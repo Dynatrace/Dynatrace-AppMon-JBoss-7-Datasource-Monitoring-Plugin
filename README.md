@@ -1,6 +1,4 @@
-# JBoss 7 Datasource Monitoring Plugin
-
-## Overview
+## JBoss 7 Datasource Monitoring Plugin
 
 ![images_community/download/attachments/120128668/icon.png](images_community/download/attachments/120128668/icon.png)
 
@@ -12,45 +10,4 @@ Here is a screen shot of a dashboard, which monitors the active Connection on in
 
 ![images_community/download/attachments/120128668/DataSource.JPG](images_community/download/attachments/120128668/DataSource.JPG)
 
-## Plugin Details
-
-| Name | JBoss 7 Datasource Monitoring Plugin
-| :--- | :----
-| Author | Muthu Madialagan
-| License | [dynaTrace BSD](dynaTraceBSD.txt)
-| Support | [Not Supported ](https://community.compuwareapm.com/community/display/DL/Support+Levels#SupportLevels-Community) If you have any questions or suggestions for these plugins, please add a comment to this page, use our [forum](https://community.dynatrace.com/community/pages/viewpage.action?pageId=46628918), or drop us an email at [apmcommunity@compuware.com](mailto:apmcommunity@compuware.com)!
-| Release History | 2013-05-08 Initial Release
-| Download | [com.jboss7.ds.statistics_1.0.0.jar](com.jboss7.ds.statistics_1.0.0.jar)
-
-
-## Configuration
-
-Name
-
-Value
-
-datasourceName
-
-Name of the datasource
-
-DSMeasure
-
-The datasource measure/statistics that you want to capture.  
-**_NOTE:_** This value is case-sensitive 
-
-jbossusername
-
-Jboss admin username
-
-jbosspassword
-
-Jboss admin password
-
-managementPort
-
-Jboss management console port
-
-## Installation
-
-Import the Plugin into the dynaTrace Server. For details how to do this please refer to the [dynaTrace documentation](https://community.compuwareapm.com/community.dynatrace.com/community/display/DOCDT50/Manage+and+Develop+Plugins#ManageandDevelopPlugins-ManageandDevelopPlugins).
-
+Find further information in the [dynaTrace community](https://community.compuwareapm.com/community/display/DL/JBoss+7+Datasource+Monitoring+Plugin)
