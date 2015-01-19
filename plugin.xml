@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.2"?>
+<!-- plugin.xml file written by dynaTrace Client 5.0.0 -->
+<plugin>
+  <extension point="com.dynatrace.diagnostics.pdk.pluginconfig" id="com.jboss7.ds.statistics" name="Jboss7 DS Statistics">
+    <information>
+      <category value="" />
+      <displayname value="Jboss7 DS Statistics" />
+      <description value="My Plugin description ..." />
+      <supportlevel value="unsupported" />
+    </information>
+    <configuration>
+      <property key="datasourceName" label="datasourceName" type="string" description="Name of the datasource" default="apmweb-liferayDB-mssql-ds" multiline="false" />
+      <property key="DSMeasure" label="DSMeasure" type="string" description="The datasource measure/statistics that you want to capture. &#xD;&#xA;NOTE: This value is casesensitive" default="ActiveCount" multiline="false" />
+      <property key="jbossusername" label="jbossusername" type="string" description="Jboss admin username&#x9;" default="liferay" multiline="false" />
+      <property key="jbosspassword" label="jbosspassword" type="string" description="Jboss admin password&#x9;" default="l1f3r@y" multiline="false" />
+      <property key="managementPort" label="managementPort" type="string" description="Jboss management console port" default="9990" multiline="false" />
+    </configuration>
+  </extension>
+  <extension point="com.dynatrace.diagnostics.pdk.monitor" id="com.jboss7.ds.statistics.monitor" name="Jboss7 DS Statistics Monitor">
+    <plugin configid="com.jboss7.ds.statistics" class="com.jboss7.management.rest.monitor.Plugin" />
+  </extension>
+  <extension point="com.dynatrace.diagnostics.pdk.monitormetricgroup" id="com.jboss7.ds.statistics.metricgroup" name="Jboss7 DS Statistics Metric Group">
+    <metricgroup monitorid="com.jboss7.ds.statistics.monitor">
+      <metric defaultrate="purepath" name="ActiveCount" unit="number" description="Active DB connect count in the pool" />
+    </metricgroup>
+  </extension>
+</plugin>
+
