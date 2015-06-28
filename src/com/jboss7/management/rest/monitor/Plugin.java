@@ -8,18 +8,14 @@
 package com.jboss7.management.rest.monitor;
 
 import com.dynatrace.diagnostics.pdk.*;
+import com.dynatrace.diagnostics.pdk.Status.StatusCode;
 
 import java.util.Collection;
-import java.util.logging.Logger;
 
 
 public class Plugin implements Monitor {
 
-	private static final Logger log = Logger.getLogger(Plugin.class.getName());
-	
 	private static final String METRIC_GROUP = "Jboss7 DS Statistics Metric Group";
-	private static final String MSR_EXEC_SUCCESS = "ActiveCount";	
-
 
 	/**
 	 * Initializes the Plugin. This method is called in the following cases:
@@ -79,22 +75,36 @@ public class Plugin implements Monitor {
 		String host = env.getHost().getAddress();
 		String port = env.getConfigString("managementPort");
 		String dsName = env.getConfigString("datasourceName");
-		String DSMeasure = env.getConfigString("DSMeasure");
 		
 		String url = "http://" + host + ":" + port + "/management/subsystem/datasources/data-source/" + dsName + "/statistics/pool?include-runtime=true";
 		String username = env.getConfigString("jbossusername");
 		String password = env.getConfigString("jbosspassword");
-		Status.StatusCode status = restCon.execute(url, username, password, DSMeasure);
+		StatusCode status = restCon.execute(url, username, password);
 		
-		Collection<MonitorMeasure> measures;
-		if ((measures = env.getMonitorMeasures(METRIC_GROUP, MSR_EXEC_SUCCESS)) != null) {
-			for (MonitorMeasure measure : measures){
-				measure.setValue(restCon.getActiveCount());
-			}
-				
+		if (status == Status.StatusCode.Success) {			
+			setMeasurementValue(env, METRIC_GROUP, "ActiveCount", restCon.getActiveCount());
+			setMeasurementValue(env, METRIC_GROUP, "AvailableCount", restCon.getAvailableCount());
+			setMeasurementValue(env, METRIC_GROUP, "AverageBlockingTime", restCon.getAverageBlockingTime());
+			setMeasurementValue(env, METRIC_GROUP, "AverageCreationTime", restCon.getAverageCreationTime());
+			setMeasurementValue(env, METRIC_GROUP, "CreatedCount", restCon.getCreatedCount());
+			setMeasurementValue(env, METRIC_GROUP, "DestroyedCount", restCon.getDestroyedCount());
+			setMeasurementValue(env, METRIC_GROUP, "MaxCreationTime", restCon.getMaxCreationTime());
+			setMeasurementValue(env, METRIC_GROUP, "MaxUsedCount", restCon.getMaxUsedCount());
+			setMeasurementValue(env, METRIC_GROUP, "MaxWaitTime", restCon.getMaxWaitTime());
+			setMeasurementValue(env, METRIC_GROUP, "TimedOut", restCon.getTimedOut());
+			setMeasurementValue(env, METRIC_GROUP, "TotalBlockingTime", restCon.getTotalBlockingTime());
+			setMeasurementValue(env, METRIC_GROUP, "TotalCreationTime", restCon.getTotalCreationTime());
 		}
 		return new Status(Status.StatusCode.Success);
 	}
+	
+	  private void setMeasurementValue(MonitorEnvironment env, String group, String key, int value) {
+		    Collection<MonitorMeasure> measures;
+		    if((measures = env.getMonitorMeasures(group, key)) != null) {
+		      for(MonitorMeasure measure : measures)
+		        measure.setValue(value);
+		    }
+		  }
 
 	/**
 	 * Shuts the Plugin down and frees resources. This method is called in the

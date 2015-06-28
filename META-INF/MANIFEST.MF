@@ -1,9 +1,9 @@
 Manifest-Version: 1.0
-Require-Bundle: com.dynatrace.diagnostics.sdk
-Bundle-Vendor: My Company Name
-Bundle-ClassPath: .
-Bundle-Version: 1.0.0
-Bundle-Name: Jboss7 DS Statistics
-Bundle-ManifestVersion: 2
 Bundle-SymbolicName: com.jboss7.ds.statistics;singleton:=true
+Bundle-Version: 1.1.0
+Bundle-Name: Jboss7 DS Statistics
+Bundle-ClassPath: .,lib/gson-2.3.1.jar
+Require-Bundle: com.dynatrace.diagnostics.sdk
+Bundle-ManifestVersion: 2
+Bundle-Vendor: My Company Name
 
