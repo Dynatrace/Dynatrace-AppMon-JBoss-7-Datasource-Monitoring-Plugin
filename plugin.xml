@@ -11,7 +11,6 @@
     </information>
     <configuration>
       <property key="datasourceName" label="datasourceName" type="string" description="Name of the datasource" default="apmweb-liferayDB-mssql-ds" multiline="false" />
-      <property key="DSMeasure" label="DSMeasure" type="string" description="The datasource measure/statistics that you want to capture. &#xD;&#xA;NOTE: This value is casesensitive" default="ActiveCount" multiline="false" />
       <property key="jbossusername" label="jbossusername" type="string" description="Jboss admin username&#x9;" default="liferay" multiline="false" />
       <property key="jbosspassword" label="jbosspassword" type="string" description="Jboss admin password&#x9;" default="l1f3r@y" multiline="false" />
       <property key="managementPort" label="managementPort" type="string" description="Jboss management console port" default="9990" multiline="false" />
@@ -23,6 +22,17 @@
   <extension point="com.dynatrace.diagnostics.pdk.monitormetricgroup" id="com.jboss7.ds.statistics.metricgroup" name="Jboss7 DS Statistics Metric Group">
     <metricgroup monitorid="com.jboss7.ds.statistics.monitor">
       <metric defaultrate="purepath" name="ActiveCount" unit="number" description="Active DB connect count in the pool" />
+      <metric defaultrate="purepath" name="AvailableCount" unit="number" />
+      <metric defaultrate="purepath" name="AverageBlockingTime" unit="ms" description="My metric description ..." />
+      <metric defaultrate="purepath" name="AverageCreationTime" unit="ms" description="My metric description ..." />
+      <metric defaultrate="purepath" name="CreatedCount" unit="number" description="My metric description ..." />
+      <metric defaultrate="purepath" name="DestroyedCount" unit="number" description="My metric description ..." />
+      <metric defaultrate="purepath" name="MaxCreationTime" unit="ms" description="My metric description ..." />
+      <metric defaultrate="purepath" name="MaxUsedCount" unit="number" description="My metric description ..." />
+      <metric defaultrate="purepath" name="MaxWaitTime" unit="ms" description="My metric description ..." />
+      <metric defaultrate="purepath" name="TimedOut" unit="ms" description="My metric description ..." />
+      <metric defaultrate="purepath" name="TotalBlockingTime" unit="ms" description="My metric description ..." />
+      <metric defaultrate="purepath" name="TotalCreationTime" unit="ms" description="My metric description ..." />
     </metricgroup>
   </extension>
 </plugin>
